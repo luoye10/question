@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>两数之和</title>
+    </head>
+    <body>
+        <script>
+            /**
+             *
+             *  给定一个整数数组 nums 和一个整数目标值 target，
+             *  在该数组中找出和为目标值 target 的两个整数，并返回它们的数组下标
+             *
+             * */
+            function twoSum(nums, target) {
+                let obj = {};
+                nums.forEach((v, index) => {
+                    if (obj[v]) {
+                        obj[v].push(index);
+                    } else {
+                        obj[v] = [index];
+                    }
+                });
+                for (let i = 0; i < nums.length; i++) {
+                    let v = target - nums[i];
+                    let idx = obj[v];
+                    if (idx) {
+                        if (idx.length >= 2) {
+                            return [idx[0], idx[1]];
+                        }
+                        if (idx.length === 1 && idx[0] !== i) {
+                            return [i, idx[0]];
+                        }
+                    }
+                }
+            }
+            console.log(twoSum([2, 3, 5, 7], 9));
+        </script>
+    </body>
+</html>
