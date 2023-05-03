@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 罗马字符转整数 </title>
+</head>
+<body>
+    <script>
+        /**
+         *  
+         *  字符          数值
+         *  I             1
+         *  V             5
+         *  X             10
+         *  L             50
+         *  C             100
+         *  D             500
+         *  M             1000 
+         * 
+         * */
+
+        // 给定一个罗马字符，转换成整数，例如：II 表示 2， IV 表示 4，IX 表示 9，XC 表示 90
+        function romanToInt(s) {
+            let list = {
+                'I':1,
+                'V':5,
+                'X':10,
+                'L':50,
+                'C':100,
+                'D':500,
+                'M':1000 
+            };
+            let a = s.split(''), num = 0;
+            for(let i = 0; i < a.length; i++) {
+                if(list[a[i]] < list[a[i + 1]]) {
+                    num += list[a[i + 1]] - list[a[i]];
+                    i += 1;
+                } else {
+                    num += list[a[i]];
+                }
+            }
+            return num;
+        };
+        console.log(romanToInt('ID'));
+    </script>
+</body>
+</html>
